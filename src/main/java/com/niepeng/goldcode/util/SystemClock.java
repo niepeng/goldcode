@@ -3,8 +3,7 @@ package com.niepeng.goldcode.util;
 public class SystemClock {
 
 	public static void sleepRandom(long min, long max) {
-		long sleepTime = (long) (Math.random() * (max - min)) + min;
-		sleep(sleepTime);
+		sleepRandomAndRetrun(min, max);
 	}
 	public static long sleepRandomAndRetrun(long min, long max) {
 		long sleepTime = (long) (Math.random() * (max - min)) + min;
