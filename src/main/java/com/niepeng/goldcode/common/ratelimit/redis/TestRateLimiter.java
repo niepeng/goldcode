@@ -20,14 +20,9 @@ import com.niepeng.goldcode.util.SystemClock;
  */
 public class TestRateLimiter {
 	
-	private Jedis jedis;
-	
-	private static final int threadNum = 1;
-	
 	public static void main(String[] args) {
 		TestRateLimiter t = new TestRateLimiter();
 		try {
-			t.init();
 			t.call();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -39,18 +34,16 @@ public class TestRateLimiter {
 	}
 	
 	private void call() {
-		ExecutorService executor = Executors.newFixedThreadPool(threadNum);
+		ExecutorService executor = Executors.newFixedThreadPool(1);
 		long limit = 4;
 		long intervalInMills = 2000;
-		final RateLimiter rateLimiter = RateLimiter.create(jedis, limit, intervalInMills);
-		for (int i = 0; i < threadNum; i++) {
-			executor.execute(new CallTask(rateLimiter, "user" + i));
-		}
+		final RateLimiter rateLimiter = RateLimiter.create(getJedis(), limit, intervalInMills);
+		executor.execute(new CallTask(rateLimiter, "user"));
 //		executor.shutdown();
 	}
 	
-	public void init() {
-		jedis = RedisClient.getRedisClient().getJedis();
+	public Jedis getJedis() {
+		 return RedisClient.getRedisClient().getJedis();
 	}
 	
 	public void close() {
