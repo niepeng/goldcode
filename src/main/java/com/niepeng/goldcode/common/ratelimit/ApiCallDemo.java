@@ -12,6 +12,10 @@ import com.niepeng.goldcode.util.DateUtil;
  * 介绍文档：google的ratelimiter文档翻译
  * http://ifeve.com/guava-ratelimiter/
  * 
+ * 自己博客文章：限流实现方案
+ * http://blog.csdn.net/lsblsb/article/details/69486012 
+ * 
+ * 
  * @author niepeng
  *
  */
