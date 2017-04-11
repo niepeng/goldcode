@@ -23,7 +23,7 @@ public class RateLimiter {
 	}
     
     /**
-     * 默认总数为5个，5秒为整个周期：即：限制为：5秒内请求为5个
+     * 默认总数为5个，5秒为整个周期，即：限制为：5秒内请求为5个
      * @param jedis
      */
     public RateLimiter(Jedis jedis) {
