@@ -9,6 +9,7 @@ import java.util.Observable;
  * <p>作者：niepeng</p>
  */ 
 public class SpecialRepoter extends Observable {
+    
     public void getNewNews(String msg) {
         this.setChanged();
         this.notifyObservers(msg);

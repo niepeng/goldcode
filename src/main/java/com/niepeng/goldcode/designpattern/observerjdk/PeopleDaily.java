@@ -7,9 +7,9 @@ public class PeopleDaily extends NewspaperOffice implements Observer {
     
     private Observable observable;
 
-    public PeopleDaily(SpecialRepoter repoter) {
-        this.observable = repoter;
-        repoter.addObserver(this);
+    public PeopleDaily(Observable observable) {
+        this.observable = observable;
+        observable.addObserver(this);
     }
 
     @Override
