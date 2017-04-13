@@ -3,13 +3,20 @@ package com.niepeng.goldcode.designpattern.observerjdk;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * <p>标题: 观察者</p>
+ * <p>描述: </p>
+ * <p>版权: lsb</p>
+ * <p>创建时间: 2017年3月23日  下午4:43:28</p>
+ * <p>作者：niepeng</p>
+ */ 
 public class PeopleDaily extends NewspaperOffice implements Observer {
     
     private Observable observable;
 
-    public PeopleDaily(SpecialRepoter repoter) {
-        this.observable = repoter;
-        repoter.addObserver(this);
+    public PeopleDaily(Observable observable) {
+        this.observable = observable;
+        observable.addObserver(this);
     }
 
     @Override
