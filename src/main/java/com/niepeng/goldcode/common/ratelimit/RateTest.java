@@ -2,12 +2,9 @@ package com.niepeng.goldcode.common.ratelimit;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.niepeng.goldcode.util.SystemClock;
-
-import sun.util.logging.resources.logging;
 
 /**
  * 
