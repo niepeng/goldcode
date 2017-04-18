@@ -2,6 +2,8 @@ package com.niepeng.goldcode.common.ratelimit.redis;
 
 import java.util.Map;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 import redis.clients.jedis.Jedis;
 
 /**
@@ -14,8 +16,11 @@ import redis.clients.jedis.Jedis;
 public class RateLimiter {
 	
 	private Jedis jedis;
+	// 周期
     private long intervalInMills;
+    // 总的令牌数量
     private long limit;
+    // 单位：毫秒/个
     private double intervalPerPermit;
 	
 	public static RateLimiter create(Jedis jedis, long limit, long intervalInMills) {
@@ -37,7 +42,7 @@ public class RateLimiter {
 		intervalPerPermit = intervalInMills * 1.0 / limit;
 	}
     
-	public boolean access(String userId) {
+	public /* synchronized */ boolean access(String userId) {
 		String key = genKey(userId);
 		Map<String, String> counter = jedis.hgetAll(key);
 		if (counter.size() == 0) {
@@ -68,8 +73,8 @@ public class RateLimiter {
 		
 		tokenBucket.setLastRefillTime(refillTime);
 		if (currentTokensRemaining == 0) {
-			tokenBucket.setTokensRemaining(currentTokensRemaining);
-			// currentTokensRemaining == 0 的时候，不需要再重新设置值了
+//			tokenBucket.setTokensRemaining(currentTokensRemaining);
+			// 当前没有可用的令牌，那就代表也没有补充，不需要记录信息了
 //			jedis.hmset(key, tokenBucket.toHash());
 			return false;
 		} else {
