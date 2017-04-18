@@ -19,13 +19,13 @@ import com.niepeng.goldcode.util.DateUtil;
  * @author niepeng
  *
  */
-public class ApiCallDemo {
+public class GuavaRateLimiterTest {
 
 	private int permitsPerSecond = 10; // 每秒10个许可
 	private int threadNum = 3;
 
 	public static void main(String[] args) {
-		new ApiCallDemo().call();
+		new GuavaRateLimiterTest().call();
 	}
 
 	private void call() {
