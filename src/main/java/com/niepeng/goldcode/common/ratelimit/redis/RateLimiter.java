@@ -2,8 +2,6 @@ package com.niepeng.goldcode.common.ratelimit.redis;
 
 import java.util.Map;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-
 import redis.clients.jedis.Jedis;
 
 /**
