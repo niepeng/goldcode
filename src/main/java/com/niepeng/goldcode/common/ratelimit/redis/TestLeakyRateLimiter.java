@@ -7,7 +7,7 @@ import com.niepeng.goldcode.util.SystemClock;
 
 public class TestLeakyRateLimiter {
     
-    static final int THREAD_NUM = 20;
+    static final int THREAD_NUM = 40;
 
     public static void main(String[] args) {
         // 漏桶容量

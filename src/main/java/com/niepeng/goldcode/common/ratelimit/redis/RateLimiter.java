@@ -39,17 +39,41 @@ public class RateLimiter {
 		this.intervalInMills = intervalInMills;
 		intervalPerPermit = intervalInMills * 1.0 / limit;
 	}
+	
+	// Can't be initialized in the constructor because mocks don't call the constructor.
+	  private volatile Object mutexDoNotUseDirectly;
+	  private Object mutex() {
+	    Object mutex = mutexDoNotUseDirectly;
+	    if (mutex == null) {
+	      synchronized (this) {
+	        mutex = mutexDoNotUseDirectly;
+	        if (mutex == null) {
+	          mutexDoNotUseDirectly = mutex = new Object();
+	        }
+	      }
+	    }
+	    return mutex;
+	  }
+	  
     
-	public /* synchronized */ boolean access(String userId) {
-		String key = genKey(userId);
-		Map<String, String> counter = jedis.hgetAll(key);
-		if (counter.size() == 0) {
-			TokenBucket tokenBucket = new TokenBucket(System.currentTimeMillis(), limit - 1);
-			jedis.hmset(key, tokenBucket.toHash());
-			return true;
-		} 
-		
-		TokenBucket tokenBucket = TokenBucket.fromHash(counter);
+    public/* synchronized */boolean access(String userId) {
+        String key = genKey(userId);
+        Map<String, String> counter = jedis.hgetAll(key);
+        if (counter.size() == 0) {
+            TokenBucket tokenBucket = new TokenBucket(System.currentTimeMillis(), limit - 1);
+            jedis.hmset(key, tokenBucket.toHash());
+            return true;
+        }
+
+        boolean flag = false;
+        synchronized (mutex()) {
+            flag = accessImpl(key, counter);
+        }
+        return flag;
+    }
+
+    private boolean accessImpl(String key, Map<String, String> counter) {
+        TokenBucket tokenBucket = TokenBucket.fromHash(counter);
 		long lastRefillTime = tokenBucket.getLastRefillTime();
 		/*
 		 * 桶中需要补充数量
@@ -80,7 +104,7 @@ public class RateLimiter {
 			jedis.hmset(key, tokenBucket.toHash());
 			return true;
 		}
-	}
+    }
 
 	private String genKey(String userId) {
         return "rate:limiter:" + intervalInMills + ":" + limit + ":" + userId;
