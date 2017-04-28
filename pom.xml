@@ -13,6 +13,7 @@
 		<java.version>1.7</java.version>
 		<java.encoding>utf-8</java.encoding>
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+		<rocketmq.version>4.1.0-incubating-SNAPSHOT</rocketmq.version>
 	</properties>
 
 
@@ -190,6 +191,22 @@
 		    <version>1.6</version>
 		</dependency>
 
+		<!--
+		add reocketMQ
+		-->
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-client</artifactId>
+			<version>${rocketmq.version}</version>
+		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-all</artifactId>
+			<version>${rocketmq.version}</version>
+		</dependency>
+		 -->
+
 
 		<!-- 
 		 去掉如下3个，是为了解决包冲突的问题，java.lang.AbstractMethodError: javax.xml.parsers.DocumentBuilderFactory.setFeature(Ljava/lang/String;Z)V
@@ -306,7 +323,7 @@
 		</dependency>
 
 
-		
+
 		<!--  third libs -->
 		<!-- jd 
 		<dependency>
