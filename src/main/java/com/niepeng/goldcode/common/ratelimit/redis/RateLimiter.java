@@ -14,8 +14,11 @@ import redis.clients.jedis.Jedis;
 public class RateLimiter {
 	
 	private Jedis jedis;
+	// 周期
     private long intervalInMills;
+    // 总的令牌数量
     private long limit;
+    // 单位：毫秒/个
     private double intervalPerPermit;
 	
 	public static RateLimiter create(Jedis jedis, long limit, long intervalInMills) {
@@ -36,17 +39,41 @@ public class RateLimiter {
 		this.intervalInMills = intervalInMills;
 		intervalPerPermit = intervalInMills * 1.0 / limit;
 	}
+	
+	// Can't be initialized in the constructor because mocks don't call the constructor.
+	  private volatile Object mutexDoNotUseDirectly;
+	  private Object mutex() {
+	    Object mutex = mutexDoNotUseDirectly;
+	    if (mutex == null) {
+	      synchronized (this) {
+	        mutex = mutexDoNotUseDirectly;
+	        if (mutex == null) {
+	          mutexDoNotUseDirectly = mutex = new Object();
+	        }
+	      }
+	    }
+	    return mutex;
+	  }
+	  
     
-	public boolean access(String userId) {
-		String key = genKey(userId);
-		Map<String, String> counter = jedis.hgetAll(key);
-		if (counter.size() == 0) {
-			TokenBucket tokenBucket = new TokenBucket(System.currentTimeMillis(), limit - 1);
-			jedis.hmset(key, tokenBucket.toHash());
-			return true;
-		} 
-		
-		TokenBucket tokenBucket = TokenBucket.fromHash(counter);
+    public/* synchronized */boolean access(String userId) {
+        String key = genKey(userId);
+        Map<String, String> counter = jedis.hgetAll(key);
+        if (counter.size() == 0) {
+            TokenBucket tokenBucket = new TokenBucket(System.currentTimeMillis(), limit - 1);
+            jedis.hmset(key, tokenBucket.toHash());
+            return true;
+        }
+
+        boolean flag = false;
+        synchronized (mutex()) {
+            flag = accessImpl(key, counter);
+        }
+        return flag;
+    }
+
+    private boolean accessImpl(String key, Map<String, String> counter) {
+        TokenBucket tokenBucket = TokenBucket.fromHash(counter);
 		long lastRefillTime = tokenBucket.getLastRefillTime();
 		/*
 		 * 桶中需要补充数量
@@ -68,8 +95,8 @@ public class RateLimiter {
 		
 		tokenBucket.setLastRefillTime(refillTime);
 		if (currentTokensRemaining == 0) {
-			tokenBucket.setTokensRemaining(currentTokensRemaining);
-			// currentTokensRemaining == 0 的时候，不需要再重新设置值了
+//			tokenBucket.setTokensRemaining(currentTokensRemaining);
+			// 当前没有可用的令牌，那就代表也没有补充，不需要记录信息了
 //			jedis.hmset(key, tokenBucket.toHash());
 			return false;
 		} else {
@@ -77,7 +104,7 @@ public class RateLimiter {
 			jedis.hmset(key, tokenBucket.toHash());
 			return true;
 		}
-	}
+    }
 
 	private String genKey(String userId) {
         return "rate:limiter:" + intervalInMills + ":" + limit + ":" + userId;
