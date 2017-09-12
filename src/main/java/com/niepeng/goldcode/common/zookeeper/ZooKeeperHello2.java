@@ -19,7 +19,7 @@ public class ZooKeeperHello2 {
     if (!zkClient.exists(node)) {
       zkClient.createPersistent(node, "hello zk");
     }
-    System.out.println(zkClient.readData(node));
+//    System.out.println(zkClient.readData(node));
   }
 
 }

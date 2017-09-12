@@ -1,5 +1,12 @@
 <classpath>
+<<<<<<< Updated upstream
   <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+=======
+  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
+  <classpathentry kind="src" path="src/test/resources" output="target/test-classes" excluding="**/*.java"/>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+>>>>>>> Stashed changes
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="var" path="M2_REPO/javax/jms/jms/1.1/jms-1.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar" sourcepath="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4-sources.jar"/>
@@ -14,11 +21,17 @@
   <classpathentry kind="var" path="M2_REPO/commons-fileupload/commons-fileupload/1.2.2/commons-fileupload-1.2.2.jar" sourcepath="M2_REPO/commons-fileupload/commons-fileupload/1.2.2/commons-fileupload-1.2.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-io/commons-io/2.1/commons-io-2.1.jar" sourcepath="M2_REPO/commons-io/commons-io/2.1/commons-io-2.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.4/commons-lang-2.4.jar" sourcepath="M2_REPO/commons-lang/commons-lang/2.4/commons-lang-2.4-sources.jar"/>
+<<<<<<< Updated upstream
   <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar" sourcepath="M2_REPO/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar" sourcepath="M2_REPO/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/easymock/easymock/2.0/easymock-2.0.jar" sourcepath="M2_REPO/org/easymock/easymock/2.0/easymock-2.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/alibaba/fastjson/1.2.29/fastjson-1.2.29.jar"/>
+=======
+  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar" sourcepath="M2_REPO/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/easymock/easymock/2.0/easymock-2.0.jar" sourcepath="M2_REPO/org/easymock/easymock/2.0/easymock-2.0-sources.jar"/>
+>>>>>>> Stashed changes
   <classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar" sourcepath="M2_REPO/com/google/code/gson/gson/2.2.4/gson-2.2.4-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/21.0/guava-21.0.jar" sourcepath="M2_REPO/com/google/guava/guava/21.0/guava-21.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpclient/4.3/httpclient-4.3.jar" sourcepath="M2_REPO/org/apache/httpcomponents/httpclient/4.3/httpclient-4.3-sources.jar"/>
@@ -42,6 +55,7 @@
   <classpathentry kind="var" path="M2_REPO/org/mybatis/mybatis/3.4.4/mybatis-3.4.4.jar" sourcepath="M2_REPO/org/mybatis/mybatis/3.4.4/mybatis-3.4.4-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.14/mysql-connector-java-5.1.14.jar"/>
   <classpathentry kind="var" path="M2_REPO/io/netty/netty/3.10.5.Final/netty-3.10.5.Final.jar" sourcepath="M2_REPO/io/netty/netty/3.10.5.Final/netty-3.10.5.Final-sources.jar"/>
+<<<<<<< Updated upstream
   <classpathentry kind="var" path="M2_REPO/io/netty/netty-all/4.0.36.Final/netty-all-4.0.36.Final.jar"/>
   <classpathentry kind="var" path="M2_REPO/oro/oro/2.0.8/oro-2.0.8.jar" sourcepath="M2_REPO/oro/oro/2.0.8/oro-2.0.8-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/poi/poi/3.8/poi-3.8.jar" sourcepath="M2_REPO/org/apache/poi/poi/3.8/poi-3.8-sources.jar"/>
@@ -49,6 +63,11 @@
   <classpathentry kind="var" path="M2_REPO/org/apache/rocketmq/rocketmq-client/4.1.0-incubating-SNAPSHOT/rocketmq-client-4.1.0-incubating-SNAPSHOT.jar" sourcepath="M2_REPO/org/apache/rocketmq/rocketmq-client/4.1.0-incubating-SNAPSHOT/rocketmq-client-4.1.0-incubating-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/rocketmq/rocketmq-common/4.1.0-incubating-SNAPSHOT/rocketmq-common-4.1.0-incubating-SNAPSHOT.jar" sourcepath="M2_REPO/org/apache/rocketmq/rocketmq-common/4.1.0-incubating-SNAPSHOT/rocketmq-common-4.1.0-incubating-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/rocketmq/rocketmq-remoting/4.1.0-incubating-SNAPSHOT/rocketmq-remoting-4.1.0-incubating-SNAPSHOT.jar" sourcepath="M2_REPO/org/apache/rocketmq/rocketmq-remoting/4.1.0-incubating-SNAPSHOT/rocketmq-remoting-4.1.0-incubating-SNAPSHOT-sources.jar"/>
+=======
+  <classpathentry kind="var" path="M2_REPO/oro/oro/2.0.8/oro-2.0.8.jar" sourcepath="M2_REPO/oro/oro/2.0.8/oro-2.0.8-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/poi/poi/3.8/poi-3.8.jar" sourcepath="M2_REPO/org/apache/poi/poi/3.8/poi-3.8-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/quartz/quartz/1.5.2/quartz-1.5.2.jar" sourcepath="M2_REPO/quartz/quartz/1.5.2/quartz-1.5.2-sources.jar"/>
+>>>>>>> Stashed changes
   <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-log4j12/1.6.1/slf4j-log4j12-1.6.1.jar" sourcepath="M2_REPO/org/slf4j/slf4j-log4j12/1.6.1/slf4j-log4j12-1.6.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring/2.5.6/spring-2.5.6.jar" sourcepath="M2_REPO/org/springframework/spring/2.5.6/spring-2.5.6-sources.jar"/>
