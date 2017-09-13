@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
  *
  * @author 聂鹏
  * @version 1.0
- * @email lisenbiao@51huadian.cn
  * @date 17/9/11
  */
 
