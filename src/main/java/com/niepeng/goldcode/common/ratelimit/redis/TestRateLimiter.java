@@ -35,8 +35,8 @@ public class TestRateLimiter {
 	
 	private void call() {
 		ExecutorService executor = Executors.newFixedThreadPool(1);
-		long limit = 4;
-		long intervalInMills = 2000;
+		long limit = 1;
+		long intervalInMills = 60 * 1000;
 		final RateLimiter rateLimiter = RateLimiter.create(getJedis(), limit, intervalInMills);
 		executor.execute(new CallTask(rateLimiter, "user"));
 //		executor.shutdown();
@@ -68,7 +68,8 @@ class CallTask implements Runnable {
 			if (rateLimiter.access(userId)) {
 				getData();
 			} else {
-				SystemClock.sleep(100);
+				System.out.println(DateUtil.format(new Date())+",------------->refuse");
+				SystemClock.sleep(5000);
 			}
 		}
 	}

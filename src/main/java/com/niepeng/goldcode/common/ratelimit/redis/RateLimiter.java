@@ -14,7 +14,7 @@ import redis.clients.jedis.Jedis;
 public class RateLimiter {
 	
 	private Jedis jedis;
-	// 周期
+		// 周期
     private long intervalInMills;
     // 总的令牌数量
     private long limit;
