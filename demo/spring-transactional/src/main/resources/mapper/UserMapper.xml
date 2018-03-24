@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.niepeng.goldcode.spring.transactional.dao.mapper.UserMapper">
+
+  <resultMap type="userDO" id="userResultMap">
+    <id property="id" column="id" />
+    <result property="name" column="name" />
+    <result property="age" column="age" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, name, age
+  </sql>
+
+  <select id="selectUser" resultType="userDO" resultMap="userResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from springbootts_user where id = #{value} and deleted=0
+  </select>
+
+  <select id="getUserList" resultType="userDO" resultMap="userResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from springbootts_user order by id desc limit 10
+  </select>
+
+  <insert id="create">
+    insert into springbootts_user (name, age, gmt_create, gmt_modified ) values (#{name}, #{age}, now(), now())
+  </insert>
+
+  <!--<update id="updateUser" parameterType="User">-->
+  <!--update t_user-->
+  <!--<set>-->
+  <!--<if test="name != null ">-->
+  <!--name = #{name},-->
+  <!--</if>-->
+  <!--</set>-->
+  <!--where id = #{id}-->
+  <!--</update>-->
+
+  <delete id="deleteByName" parameterType="string">
+    delete from springbootts_user where name = #{value}
+  </delete>
+
+</mapper>
