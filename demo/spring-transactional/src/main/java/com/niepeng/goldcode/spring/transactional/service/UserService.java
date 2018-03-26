@@ -87,6 +87,7 @@ public class UserService {
       /**
        * 方案三:通过aopContext获取threadlocal中获取值
        * 暴露出aop代理，让其在方法中，获取到代理类的对象,需要开启:expose-proxy=“true”
+       * 如: @EnableAspectJAutoProxy(exposeProxy = true)
        * 获取代理对象：AopContext.currentProxy()
        */
       ((UserService)AopContext.currentProxy()).opt2();
