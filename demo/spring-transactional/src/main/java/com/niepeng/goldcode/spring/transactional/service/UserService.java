@@ -105,6 +105,21 @@ public class UserService {
     int i = 2 / 0 ;
   }
 
+  @Transactional(rollbackFor = Exception.class)
+  public void opt3() {
+    userMapper.create("opt2", 19);
+    int i = 2 / 0 ;
+  }
+
+  public void opt13() {
+    SpringUtil.getBean(UserService.class).opt1();
+    try {
+      SpringUtil.getBean(UserService.class).opt3();
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 
 
 }

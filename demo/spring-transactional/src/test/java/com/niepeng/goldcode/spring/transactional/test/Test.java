@@ -23,4 +23,9 @@ public class Test extends BaseTest  {
   public void test2() {
     userService.opt2();
   }
+
+  @org.junit.Test
+  public void  test3() {
+    userService.opt13();
+  }
 }
