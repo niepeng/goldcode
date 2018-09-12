@@ -8,6 +8,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+/**
+ * jvm启动参数中指定:
+ * -Xbootclasspath/a:/Users/lsb/data/tmp/jvmtest/ 还是加载当前目录下的类
+ */
 public class FindClassOrder2 {
 
   static final String classFilePath = "/Users/lsb/data/code/git/goldcode/goldcode/target/classes/";
