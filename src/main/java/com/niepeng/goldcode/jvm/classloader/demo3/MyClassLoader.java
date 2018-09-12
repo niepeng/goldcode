@@ -12,7 +12,7 @@ public class MyClassLoader extends URLClassLoader {
 
   // 打破双亲模式，保证自己的类会被自己的classloader加载
   @Override
-  protected synchronized Class<?> loadClass(String name, boolean resolve)  throws ClassNotFoundException {
+  protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
     Class c = findLoadedClass(name);
     if (c == null) {
       try {
