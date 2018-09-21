@@ -13,14 +13,15 @@ import java.lang.reflect.Proxy;
  */
 public class TestJDKProxy {
 
-	public static void main(String[] args) {
+	public static void main1(String[] args) {
 		CustomInvocationHandler handler = new CustomInvocationHandler(new HelloWorldImpl());
 		HelloWorld proxy = (HelloWorld)Proxy.newProxyInstance(TestJDKProxy.class.getClassLoader(), new Class[] {HelloWorld.class}, handler);
 		String retValue = proxy.sayHello("niepeng");
+		System.out.println(proxy.getClass().getName());
 		System.out.println(retValue);
 	}
 	
-	public static void main2(String[] args) {
+	public static void main(String[] args) {
 		final HelloWorld h = new HelloWorldImpl();
 		HelloWorld proxy = (HelloWorld) Proxy.newProxyInstance(TestJDKProxy.class.getClassLoader(), new Class[] { HelloWorld.class }, new InvocationHandler() {
 			@Override
