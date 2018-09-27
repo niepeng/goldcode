@@ -328,6 +328,14 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+		</dependency>
+
+
+
 		<!--  third libs -->
 		<!-- jd 
 		<dependency>
